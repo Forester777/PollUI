@@ -49,6 +49,8 @@ if (myLayout == 'vertical-modern-menu-template') {
 	dashboardRename = config.horizontal_menu_template.dashboardRename;
 	pugSrc         = config.horizontal_menu_template.pugSrc;
 } 
+console.log("path");
+console.log(process.cwd() + '/gulp-tasks');
 
 // Invoke the module with options.
 gulpRequireTasks({
@@ -91,3 +93,8 @@ gulp.task('dist', ['dist-css', 'dist-js']);
 gulp.task('default', ['dist']);
 
 gulp.task('replacement', gulpSequence('replacement:css', 'replacement:js'));
+
+// Starts a BrowerSync instance
+gulp.task('server', gulp.series('build', function(){
+  browser.init({server: './starter-kit/ltr/vertical-dark-menu-template/page-blank.html', port: 8888});
+}));
